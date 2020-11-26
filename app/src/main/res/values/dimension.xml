@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<dimen name="button_width">300dp</dimen>
+<dimen name="button_height">50dp</dimen>
+<dimen name="image_width">249dp</dimen>
+<dimen name="image_height">242dp</dimen>
+<dimen name="editText_width">300dp</dimen>
+<dimen name="editText_height">50dp</dimen>
+
+
+<dimen name="cropImage">250dp</dimen>
+</resources>

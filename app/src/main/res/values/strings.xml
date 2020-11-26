@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Crop Detection</string>
+    <string name="name">Name...</string>
+    <string name="email">Email...</string>
+    <string name="password">Password...</string>\
+    <string name="goToHomeActivity">goToHomeActivity</string>
+    <string name="chooseLanguage">CHOOSE LANGUAGE</string>
+    <string name="getMarketPrice">GET MARKET PRICE</string>
+    <string name="cropLocation">CROP LOCATION</string>
+    <string name="choosePhoto">CHOOSE PHOTO</string>
+    <string name="takePhoto">TAKE PHOTO</string>
+    <string name="getInfo">CROP INFORMATION </string>
+
+    <string name="logOut">LogOut</string>
+
+    <string name="register">Register</string>
+    <string name="login">LogIn</string>
+    <string name="loginTxt">Already Have Account?? <b><font color='0A79DF'>Login</font></b></string>
+
+    <string name="registerTxt">Not Have Account?? <b><font color='0A79DF'>Create One</font></b></string>
+
+    <string name="wheat">Wheat</string>
+    <string name="jowar">Jowar</string>
+    <string name="bajra">Bajra</string>
+    <string name="rice">Rice</string>
+
+    <string name="jowarDetail">
+        Sorghum is a genus of flowering plants in the grass family Poaceae. Seventeen of the 25 species are native to Australia,with the range of some extending to Africa, Asia, Mesoamerica, and certain islands in the Indian and Pacific Oceans.One species is grown for grain, while many others are used as fodder plants, either cultivated in warm climates worldwide or naturalized in pasture lands.Sorghum is in the subfamily Panicoideae and the tribe Andropogoneae (the tribe of big bluestem and sugarcane
+    </string>
+
+    <string name="riceDetail">
+        Rice is the seed of the grass species Oryza sativa (Asian rice) or Oryza glaberrima (African rice). As a cereal grain, it is the most widely consumed staple food for a large part of the worlds human population, especially in Asia. It is the agricultural commodity with the third-highest worldwide production (rice, 741.5 million tonnes in 2014), after sugarcane (1.9 billion tonnes) and maize (1.0 billion tonnes). Oryza sativa with small wind-pollinated flowers Since sizable portions of sugarcane and maize crops are used for purposes other than human consumption, rice is the most important grain with regard to human nutrition and caloric intake, providing more than one-fifth of the calories consumed worldwide by humans.There are many varieties of rice and culinary preferences tend to vary regionally.Cooked brown rice from Bhutan Jumli Marshi, brown rice from Nepa Rice can come in many shapes, colors and sizes.Rice, a monocot, is normally grown as an annual plant, although in tropical areas it can survive as a perennial and can produce a ratoon crop for up to 30 years.Rice cultivation is well-suited to countries and regions with low labor costs and high rainfall, as it is labor-intensive to cultivate and requires ample water. However, rice can be grown practically anywhere, even on a steep hill or mountain area with the use of water-controlling terrace systems. Although its parent species are native to Asia and certain parts of Africa, centuries of trade and exportation have made it commonplace in many cultures worldwide
+
+    </string>
+    <string name="wheatDetail">
+        Wheat is a grass widely cultivated for its seed, a cereal grain which is a worldwide staple food The many species of wheat together make up the genus Triticum; the most widely grown is common wheat Wheat is grown on more land area than any other food crop (220.4 million hectares, 2014).World trade in wheat is greater than for all other crops combined.In 2017, world production of wheat was 772 million tonnes, with a forecast of 2019 production at 766 million tonnes,making it the second most-produced cereal after maize. Since 1960, world production of wheat and other grain crops has tripled and is expected to grow further through the middle of the 21st century. Global demand for wheat is increasing due to the unique viscoelastic and adhesive properties of gluten proteins, which facilitate the production of processed foods, whose consumption is increasing as a result of the worldwide industrialization process and the westernization of the diet
+    </string>
+
+    <string name="bajraDetail">
+        Pearl millet  is the most widely grown type of millet. It has been grown in Africa and the Indian subcontinent since prehistoric times. The center of diversity, and suggested area of domestication, for the crop is in the Sahel zone of West Africa. Recent archaeobotanical research has confirmed the presence of domesticated pearl millet on the Sahel zone of northern Mali between 2500 and 2000 BC.Cultivation subsequently spread and moved overseas to India. The earliest archaeological records in the Indian subcontinent date to around 2000 BC,and it spread rapidly through Northern Indian subcontinent reaching South India by 1500 BC, based on evidence from the site of Hallur. Cultivation also spread throughout eastern and southern parts of Africa. Pearl millet is widely grown in the northeastern part of Nigeria (especially in Borno and Yobe states). It is a major source of food to the local villagers of that region. The crop grows easily in that region due to its ability to withstand harsh weather conditions like drought and flood. Records exist for cultivation of pearl millet in the United States in the 1850sand the crop was introduced into Brazil in the 1960s.
+    </string>
+
+
+</resources>
