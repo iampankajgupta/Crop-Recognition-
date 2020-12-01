@@ -5,57 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapseBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:contentScrim="@color/colorPrimary"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            >
-
-            <ImageView
-                android:id="@+id/cropImage"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/cropImage"
-                android:contentDescription="@null"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/bg" />
-            <!--<android.support.v7.widget.Toolbar-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Dark"-->
-            <!--&gt;-->
-
-            <!--</android.support.v7.widget.Toolbar>-->
-
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/ShareBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-
-        android:src="@drawable/share"
-        android:background="@color/white"
-        app:layout_anchor="@+id/appBarLayout"
-        app:layout_anchorGravity="bottom|right|end"
-        />
+    <include android:id="@+id/LogOut"
+        layout="@layout/toolbar"/>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bg"
+
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
@@ -69,14 +25,13 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:orientation="vertical">
-
                 <TextView
-                    android:id="@+id/cropName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Name : "
-                    android:textSize="24sp" />
+                android:id="@+id/cropName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Name : "
+                android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/cropDescription"
@@ -86,7 +41,6 @@
                     android:layout_marginTop="10dp"
                     android:text="Description : "
                     android:textSize="24sp" />
-
                 <Button
                     android:id="@+id/getPriceInfo"
                     android:layout_width="@dimen/button_width"
@@ -94,35 +48,75 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/roundbutton"
-                    android:text="@string/getMarketPrice" />
+                    android:text="@string/getMarketPrice"
+                    android:layout_marginBottom="10dp"
+                    />
 
-                <Button
-                    android:id="@+id/LogOut"
-                    android:layout_width="@dimen/button_width"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="50dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:background="@drawable/roundbutton"
-                    android:text="@string/logOut" />
+<!--                <Button-->
+<!--                    android:id="@+id/LogOut"-->
+<!--                    android:layout_width="@dimen/button_width"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginStart="50dp"-->
+<!--                    android:layout_marginTop="16dp"-->
+<!--                    android:layout_marginBottom="20dp"-->
+<!--                    android:background="@drawable/roundbutton"-->
+<!--                    android:text="@string/logOut" />-->
+
+
             </LinearLayout>
 
         </RelativeLayout>
 
 
     </androidx.core.widget.NestedScrollView>
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapseBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/colorPrimary"
+            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
+
+            <ImageView
+                android:id="@+id/cropImage"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/cropImage"
+                android:contentDescription="@null"
+                android:scaleType="centerCrop"
+                android:background="@color/white" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ShareBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+
+        android:backgroundTint="@color/colorPrimary"
+        android:src="@drawable/share"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="bottom|right|end" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/cropLocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="8dp"
-        android:src="@drawable/ic_location_on_black_24dp"
-        app:fabSize="normal"
+        android:backgroundTint="@color/colorPrimary"
         android:elevation="6dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:backgroundTint="@color/colorAccent"
-        />
+        android:src="@drawable/ic_location_on_black_24dp"
+        app:fabSize="normal" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

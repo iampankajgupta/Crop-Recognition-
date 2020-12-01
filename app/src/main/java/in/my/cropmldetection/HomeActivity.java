@@ -15,9 +15,14 @@ import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.util.Log;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import android.widget.Button;
 import android.widget.ImageView;
@@ -50,16 +55,19 @@ public class HomeActivity extends AppCompatActivity {
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTUER_CODE = 1001;
 
+    Toolbar toolbar;
     String fileName;
     ProgressBar progressBar;
 
     FirebaseAutoMLLocalModel localModel;
     FirebaseVisionImageLabeler labeler;
     FirebaseVisionImage image;
-    static ArrayList<String> myList;
+    ArrayList<String> myList;
+
+    UserSessionManager userSessionManager;
+
 
     Bitmap bitmap;
-    ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +82,15 @@ public class HomeActivity extends AppCompatActivity {
         getInfo = findViewById(R.id.getInfo);
         info = findViewById(R.id.info);
 
+        userSessionManager = new UserSessionManager(getApplicationContext());
+
+
         progressBar = findViewById(R.id.progressBar);
 
-        myList = new ArrayList<>();
+        toolbar = findViewById(R.id.LogOut);
+        setSupportActionBar(toolbar);
 
+        myList = new ArrayList<>();
         choosePhoto.setOnClickListener(v -> new Thread(new Runnable() {
             @Override
             public void run() {
@@ -103,30 +116,33 @@ public class HomeActivity extends AppCompatActivity {
                 openCamera();
             }
         });
+
         getInfo.setOnClickListener(v -> {
+
             new Thread(new Runnable() {
                 @Override
                 public void run() {
+                    try {
 
-                        try {
-                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
-                            writeFileToInternalStorage(getApplicationContext(),bitmap);
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                        writeFileToInternalStorage(getApplicationContext(), bitmap);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }).start();
             new Thread(() -> setLabelFromRemoteModel(imageUri)).start();
-            if (myList.size() != 0) {
+            if (myList.size() > 0) {
                 Intent intent1 = new Intent(HomeActivity.this, DetectedCropActivity.class);
                 intent1.putExtra("myList", myList);
                 intent1.putExtra("imageFilePath", fileName);
                 startActivity(intent1);
             }
         });
+
     }
+
     private void openCamera() {
 
         ContentValues values = new ContentValues();
@@ -195,7 +211,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void setLabelFromRemoteModel(Uri uri) {
-
         localModel = new FirebaseAutoMLLocalModel.Builder()
                 .setAssetFilePath("manifest.json")
                 .build();
@@ -233,23 +248,40 @@ public class HomeActivity extends AppCompatActivity {
             }
         }).addOnFailureListener(e -> Toast.makeText(HomeActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show());
     }
+
     @Override
     public void onBackPressed() {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
         startMain.addCategory(Intent.CATEGORY_HOME);
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-    startActivity(startMain);
-}
-
-
-    public void writeFileToInternalStorage(Context context, Bitmap outputImage) throws IOException {
-        fileName = System.currentTimeMillis()+".jpg";
-        final FileOutputStream fos = context.openFileOutput(fileName,Context.MODE_PRIVATE);
-        outputImage.compress(Bitmap.CompressFormat.PNG,90,fos);
-        fos.close();
+        startActivity(startMain);
     }
 
 
+    public void writeFileToInternalStorage(Context context, Bitmap outputImage) throws IOException {
+        fileName = System.currentTimeMillis() + ".jpg";
+        final FileOutputStream fos = context.openFileOutput(fileName, Context.MODE_PRIVATE);
+        outputImage.compress(Bitmap.CompressFormat.PNG, 90, fos);
+        fos.close();
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.LogOut:
+                userSessionManager.logoutUser();
+                Intent intent1 = new Intent(HomeActivity.this, MainActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
 

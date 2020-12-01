@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
@@ -38,11 +42,14 @@ public class InformationActivity extends AppCompatActivity {
 
     private static final String fileName = "Example.pdf";
 
+    Toolbar toolbar;
+
     String cropName;
     Button getMarketPrice, logOut;
     FloatingActionButton ShareBtn;
     FloatingActionButton cropLocation;
     ImageView cropImage;
+
 
     UserSessionManager userSessionManager;
 
@@ -65,12 +72,14 @@ public class InformationActivity extends AppCompatActivity {
 
         detectedCropActivity = new DetectedCropActivity();
 
+        toolbar = findViewById(R.id.LogOut);
+        setSupportActionBar(toolbar);
+
         name = findViewById(R.id.cropName);
         description = findViewById(R.id.cropDescription);
 
         ShareBtn = findViewById(R.id.ShareBtn);
-        getMarketPrice = findViewById(R.id.getPriceInfo);
-        logOut = findViewById(R.id.LogOut);
+//        logOut = findViewById(R.id.LogOut);
         getMarketPrice = findViewById(R.id.getPriceInfo);
 
         cropLocation = findViewById(R.id.cropLocation);
@@ -109,13 +118,6 @@ public class InformationActivity extends AppCompatActivity {
         cropLocation.setOnClickListener(v -> {
             Intent intent1 = new Intent(InformationActivity.this, ShowCropLocationActivity.class);
             intent1.putExtra("cropName", cropName);
-            startActivity(intent1);
-        });
-
-        logOut.setOnClickListener(v -> {
-            userSessionManager.logoutUser();
-            Intent intent1 = new Intent(InformationActivity.this, MainActivity.class);
-            intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent1);
         });
 
@@ -173,9 +175,31 @@ public class InformationActivity extends AppCompatActivity {
 
         });
 
-        getMarketPrice.setOnClickListener(v -> {
-//                getData();
+               getMarketPrice.setOnClickListener(v -> {
+            String url = "https://www.google.com/search?q="+cropName+"+price+in+mandi&oq=rice+price+in+mandi+&aqs=chrome..69i57j0i22i30l7.11086j0j7&sourceid=chrome&ie=UTF-8";
+            Intent i = new Intent(Intent.ACTION_VIEW);
+            i.setData(Uri.parse(url));
+            startActivity(i);
         });
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.LogOut:
+                userSessionManager.logoutUser();
+                Intent intent1 = new Intent(InformationActivity.this, MainActivity.class);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent1);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

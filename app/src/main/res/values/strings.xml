@@ -11,13 +11,17 @@
     <string name="takePhoto">TAKE PHOTO</string>
     <string name="getInfo">CROP INFORMATION </string>
 
-    <string name="logOut">LogOut</string>
+    <string name="logOut">Logout</string>
 
     <string name="register">Register</string>
     <string name="login">LogIn</string>
-    <string name="loginTxt">Already Have Account?? <b><font color='0A79DF'>Login</font></b></string>
+    <string name="loginTxt">Login</string>
+    <string name="msgLogin">Already have Account??</string>
 
-    <string name="registerTxt">Not Have Account?? <b><font color='0A79DF'>Create One</font></b></string>
+    <string name="createOne">Create One</string>
+
+
+    <string name="msgRegister">Not Have Account??</string>
 
     <string name="wheat">Wheat</string>
     <string name="jowar">Jowar</string>

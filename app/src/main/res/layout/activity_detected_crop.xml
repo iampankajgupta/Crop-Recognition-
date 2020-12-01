@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context=".DetectedCropActivity">
 
+    <include android:id="@+id/LogOut"
+        layout="@layout/toolbar"
+
+        />
     <ImageView
         android:id="@+id/cropImage"
         android:layout_width="match_parent"

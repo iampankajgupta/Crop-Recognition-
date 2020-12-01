@@ -55,25 +55,25 @@ public class UserSessionManager {
      * Else do anything
      * */
 
-    public boolean checkLogin(){
-        // Check login status
+        public boolean checkLogin(){
+            // Check login status
 
-        if(this.isUserLoggedIn()){
+            if(this.isUserLoggedIn()){
 
-            // user is not logged in redirect him to Login Activity
-            Intent i = new Intent(context, HomeActivity.class);
+                // user is not logged in redirect him to Login Activity
+                Intent i = new Intent(context, HomeActivity.class);
 
-            // Closing all the Activities from stack
-            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                // Closing all the Activities from stack
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-            // Add new Flag to start new Activity
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                // Add new Flag to start new Activity
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-            // Staring Login Activity
-            context.startActivity(i);
+                // Staring Login Activity
+                context.startActivity(i);
 
-            return true;
-        }
+                return true;
+            }
         return false;
     }
 

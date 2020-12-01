@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="in.my.cropmldetection">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:appComponentFactory="whateverString"
@@ -18,16 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:appComponentFactory">
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/map_key" />
-
-
-            
+        <activity android:name=".splash_activity"></activity>
 
         <activity android:name=".login" />
-        <activity android:name=".DetectedCropActivity"/>
-        <activity android:name=".HomeActivity"/>
+
+        <activity android:name=".DetectedCropActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".InformationActivity" />
         <activity android:name=".ShowCropLocationActivity" />
         <activity android:name=".MainActivity">
@@ -38,21 +29,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--
-
-        below lines are the recently written code for sharing files which are stored in internal storage
-
-        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+        <!--         below lines are the recently written code for sharing files which are stored in internal storage -->
         <provider
-            android:authorities="in.my.cropmldetection"
             android:name="androidx.core.content.FileProvider"
+            android:authorities="in.my.cropmldetection"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepath"/>
+                android:resource="@xml/filepath" />
         </provider>
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

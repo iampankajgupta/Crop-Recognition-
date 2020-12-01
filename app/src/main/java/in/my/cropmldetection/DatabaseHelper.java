@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     SQLiteDatabase sqLiteDatabase;
 
-    public  static  final String user_sql = "CREATE TABLE " + USERS_TABLE + "(_id INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,EMAIL TEXT,PASSWORD TEXT)";
+    public static final String user_sql = "CREATE TABLE " + USERS_TABLE + "(_id INTEGER PRIMARY KEY AUTOINCREMENT,NAME TEXT,EMAIL TEXT,PASSWORD TEXT)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, version);
@@ -30,41 +30,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(user_sql);
     }
 
-    public void addUser(String name,String email,String password){
+    public void addUser(String name, String email, String password) {
         sqLiteDatabase = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put("NAME",name);
-        contentValues.put("EMAIL",email);
-        contentValues.put("PASSWORD",password);
-        sqLiteDatabase.insert("USERS",null,contentValues);
-        Log.d("msg","success");
+        contentValues.put("NAME", name);
+        contentValues.put("EMAIL", email);
+        contentValues.put("PASSWORD", password);
+        sqLiteDatabase.insert("USERS", null, contentValues);
+        Log.d("msg", "success");
 
     }
 
-    public boolean CheckEmailExists(String email){
+    public boolean CheckEmailExists(String email) {
         sqLiteDatabase = getReadableDatabase();
         String sql = "SELECT EMAIL FROM USERS WHERE EMAIL=?";
-        Cursor cursor = sqLiteDatabase.rawQuery(sql,new String[]{email});
-        if(cursor.getCount()==1){
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{email});
+        if (cursor.getCount() == 1) {
             return true;
         }
         return false;
     }
-    public boolean UserExists(String email,String password){
+
+    public boolean UserExists(String email, String password) {
         sqLiteDatabase = getReadableDatabase();
         String sql = "SELECT EMAIL,PASSWORD FROM USERS WHERE EMAIL=? AND PASSWORD=?";
-        Cursor cursor = sqLiteDatabase.rawQuery(sql,new String[]{email,password});
-        if(cursor.getCount()==1){
+        Cursor cursor = sqLiteDatabase.rawQuery(sql, new String[]{email, password});
+        if (cursor.getCount() == 1) {
             return true;
         }
         return false;
     }
-
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "DROP TABLE IF EXISTS" +USERS_TABLE;
+        String sql = "DROP TABLE IF EXISTS" + USERS_TABLE;
         onCreate(db);
     }
 }

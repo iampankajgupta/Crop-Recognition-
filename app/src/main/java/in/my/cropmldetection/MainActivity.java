@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
 
         loginTxt = findViewById(R.id.loginTxt);
 
-        chooseLanguage = findViewById(R.id.chooseLanguage);
+//        chooseLanguage = findViewById(R.id.chooseLanguage);
         register = findViewById(R.id.registerBtn);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -58,13 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         databaseHelper = new DatabaseHelper(this);
-
-        chooseLanguage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showChangeLanguageDialog();
-            }
-        });
+//
+//        chooseLanguage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showChangeLanguageDialog();
+//            }
+//        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,13 +82,15 @@ public class MainActivity extends AppCompatActivity {
                         name.setText("");
                         password.setText("");
                     }
+                    else{
+                        databaseHelper.addUser(name.getText().toString(), email.getText().toString(), password.getText().toString());
+                        SaveUserSeesion();
+                        Log.d("msg", "Registered Succesfully ");
+                        Toast.makeText(MainActivity.this, "Registered Succesfully", Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
+                        startActivity(intent1);
+                    }
 
-
-                    databaseHelper.addUser(name.getText().toString(), email.getText().toString(), password.getText().toString());
-                    SaveUserSeesion();
-                    Log.d("msg", "Registered Succesfully ");
-                    Intent intent1 = new Intent(MainActivity.this, HomeActivity.class);
-                    startActivity(intent1);
                 }
             }
         });
